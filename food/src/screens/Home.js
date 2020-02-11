@@ -8,7 +8,7 @@ import Snackb from '../components/Snackb';
 import Nav from '../components/NavBar';
 
 const Home = () =>  {
-    const [ searchItems, setSearchItems ] = useState([]);
+    
     const [snackOpen, setSnackOpen ]= useState(false);    
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -20,7 +20,7 @@ const Home = () =>  {
       <>
         <Nav />
         <Container maxWidth="lg" style={{marginTop: '25vh', marginBottom: "5rem"}}>
-            <SearchBox searchItems={searchItems} setSearchItems={setSearchItems} setSnackOpen={setSnackOpen}
+            <SearchBox setSnackOpen={setSnackOpen}
                 style={{marginBottom: "2rem"}}
             />
             <Results setSnackOpen={setSnackOpen} />

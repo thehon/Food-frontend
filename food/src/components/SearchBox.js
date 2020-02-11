@@ -31,9 +31,10 @@ const useStyles = makeStyles(theme => ({
 
   const dietPrefsList = ['vegan', 'lactose free', 'vegetarian', 'nut free', 'dairy free', 'fish free', 'egg free'];
 
-const SearchBox = ({searchItems, setSearchItems}) => {
+const SearchBox = () => {
     const [ dietPrefs ,setDietPrefs ] = useState([]);
     const classes = useStyles();
+    const [ searchItems, setSearchItems ] = useState([]);
     const [currentItem, setCurrentItem ] = useState('');
     const { state, IngredientsPopulate, Search } = useContext(Context);
     useEffect(() => {

@@ -35,11 +35,11 @@ const Nav = () => {
         <Container maxWidth="lg">
           <Toolbar className={classes.tool}>
             <div className={classes.title}>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">Dashboard</Button>
-                </div>
-            <Button color="inherit"><Link to="login">Signup</Link></Button>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit"><Link to ="/">Home</Link></Button>
+            <Button color="inherit"><Link to ="/Dashboard">Dashboard</Link></Button>
+            </div>
+            <Button color="inherit"><Link to="/login">Signup</Link></Button>
+            <Button color="inherit"><Link to ="/Login">Login</Link></Button>
             
           </Toolbar>
         </Container>

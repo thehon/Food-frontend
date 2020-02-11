@@ -49,10 +49,22 @@ const IngredientsPopulate = dispatch => async () => {
     }
 }
 
-const Search = dispatch => async (ingredients, dietPrefs) => {
+const Search = dispatch => async (searchItems, dietPrefs) => {
     try {
-        const resp = await api.get('/get_results');
-        console.log('searching ingredients', resp);
+
+        console.log('searching ingredients', searchItems);
+        if (searchItems !== '') {
+            var searchItemsString = searchItems.toString();
+            console.log('searchString: ', searchItemsString);
+        }
+        if (dietPrefs !== '') {
+            var dietPrefsString = dietPrefs.toString();
+            console.log('diestprefsstring: ', dietPrefsString);
+        }
+        const searchString = "q=" + searchItemsString + '&p=' + dietPrefsString;
+        
+        const resp = await api.get('/get_results?' + searchString);
+        
         dispatch({type: "search", payload: resp.data.hits});
     } catch (e) {
         console.log('search errorL ', e);
