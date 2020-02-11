@@ -47,6 +47,7 @@ const SearchBox = ({searchItems, setSearchItems}) => {
                 options={state.autoCompleteIngredients.data}
                 getOptionLabel={option => option}
                 value={currentItem}
+                
                 onChange={event => {
                     if (event.currentTarget.textContent != '') {
                         setCurrentItem(event.currentTarget.textContent)

@@ -9,7 +9,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import { red, yellow } from '@material-ui/core/colors';
 import { ReactComponent as ServeIcon } from '../images/serve.svg';
 
-
 const useStyles = makeStyles(theme => ({
     root: {
       //maxWidth: 345,
@@ -120,20 +119,12 @@ const ResultCard = ({result, setSnackOpen}) => {
             
             <IconButton >
                 <Tooltip title="Remove">
-                  <ClearIcon  
-                    onClick={() => {
-                      setSnackOpen(true);
-                    }}
-                  />
+                  <ClearIcon  />
                   </Tooltip>
               </IconButton>
               <IconButton >
                 <Tooltip title="Share">
-                  <ShareIcon  
-                    onClick={() => {
-                      setSnackOpen(true);
-                    }}
-                  />
+                  <ShareIcon/>
                   </Tooltip>
               </IconButton>
               <IconButton >
@@ -157,9 +148,6 @@ const ResultCard = ({result, setSnackOpen}) => {
                       Ingredients 
                       </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-                    
-
-                    
                     <div style={{ overflow: 'auto', maxHeight: '250px', width: "100%" }}>
                       <Table stickyHeader >
                         <TableBody>

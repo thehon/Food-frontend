@@ -1,7 +1,6 @@
 import React, { Component, useState, useContext } from 'react';
 import Login from './Login';
 import { Link } from "react-router-dom";
-import Dashboard from '../components/Dashboard';
 import Results from '../components/Results';
 import SearchBox from '../components/SearchBox';
 import Container from '@material-ui/core/Container';
