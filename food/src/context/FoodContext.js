@@ -15,8 +15,10 @@ const FoodReducer = (state, action) => {
     }
 }
 
-const Login = dispatch => ({email, password}) => {
+const Login = dispatch => async ({email, password}) => {
     try {
+        const resp = await api.post('/api/token-auth',{email,password})
+        console.log("Login Response: ", resp);
         dispatch({type: 'login'});
     } catch (e) {
         console.log('error in login: ', e);
@@ -33,6 +35,8 @@ const Logout = dispatch => {
 
 const Signup = dispatch => ({email, password}) => {
     try {
+        const resp = await api.get('/create_user?email=' + email + "&password=" + password);
+        console.log("Signup Response: ", resp);
         dispatch({type: 'signup'});
     } catch (e) {
         console.log('erorr signing up',e);
@@ -50,9 +54,7 @@ const IngredientsPopulate = dispatch => async () => {
 }
 
 const Search = dispatch => async (searchItems, dietPrefs) => {
-    try {
-
-        console.log('searching ingredients', searchItems);
+    try { 
         if (searchItems !== '') {
             var searchItemsString = searchItems.toString();
             console.log('searchString: ', searchItemsString);

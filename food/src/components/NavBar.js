@@ -38,7 +38,7 @@ const Nav = () => {
             <Button color="inherit"><Link to ="/">Home</Link></Button>
             <Button color="inherit"><Link to ="/Dashboard">Dashboard</Link></Button>
             </div>
-            <Button color="inherit"><Link to="/login">Signup</Link></Button>
+            <Button color="inherit"><Link to="/Signup">Signup</Link></Button>
             <Button color="inherit"><Link to ="/Login">Login</Link></Button>
             
           </Toolbar>

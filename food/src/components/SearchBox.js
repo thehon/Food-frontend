@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Context } from '../context/FoodContext';
 import Grid from '@material-ui/core/Grid';
 import { grey } from '@material-ui/core/colors';
-
+import _ from 'lodash';
 const useStyles = makeStyles(theme => ({
     root: {
       display: 'contents',
@@ -53,6 +53,7 @@ const SearchBox = () => {
                     if (event.currentTarget.textContent != '') {
                         setCurrentItem(event.currentTarget.textContent)
                         setSearchItems([...searchItems, currentItem]);
+                        setSearchItems(_.uniq(searchItems));
                     }
                 }}
                 renderInput={params => (

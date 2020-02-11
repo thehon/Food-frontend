@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from 'react';
+import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,8 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Navbar from '../components/NavBar';
-import { Context } from '../context/FoodContext';
-
 
 function Copyright() {
   return (
@@ -49,11 +47,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Login() {
+export default function Signup() {
   const classes = useStyles();
-  const { login } = useContext(Context);
-  const [ password , setPassword ] = useState('');
-  const [ username, setUsername ] = useState('');
 
   return (
     <>
@@ -65,7 +60,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Register
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -78,8 +73,6 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
-            value={username}
-            onChange={setUsername}
           />
           <TextField
             variant="outlined"
@@ -91,8 +84,6 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
-            onChange={setPassword}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -104,19 +95,13 @@ export default function Login() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={login(username, password)}
           >
-            Sign In
+            Register
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Register"}
+              <Link href="/login" variant="body2">
+                {"Already have an account? Sign In"}
               </Link>
             </Grid>
           </Grid>
