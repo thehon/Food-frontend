@@ -1,10 +1,11 @@
 import React from 'react';
-import { List, ListItemAvatar, ListItem, Avatar, ListItemText, Divider, Paper } from '@material-ui/core';
+import { List, ListItemAvatar, ListItem, Avatar, ListItemText, Divider, Paper, Grid } from '@material-ui/core';
 
 const History = ({history}) => {
     console.log('hjistpry: ', history);
     if (history !== undefined) {
     return (
+        <Grid item xs={12} md={6}>
         <div class="history-list">
         <div class="history-header">
                 <h1>Previously Cooked Recipes</h1>
@@ -31,6 +32,7 @@ const History = ({history}) => {
         </List>
         </Paper>
         </div>
+        </Grid>
         
     )
     } else {

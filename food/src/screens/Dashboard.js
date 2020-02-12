@@ -8,6 +8,8 @@ import { teal, yellow, lightBlue } from '@material-ui/core/colors';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ChartCard from '../components/ChartCard';
 import History from '../components/History';
+import Badges from '../components/Badges';
+import NextBadges from '../components/NextBadges';
 
 const Dashboard = () => {
 
@@ -15,10 +17,8 @@ const Dashboard = () => {
     useEffect(() => {
         Dashboard();
     },[]);
-    
-    
 
-    
+    console.log('dashboard state: ',state);
     return (
         <>
         <Nav />
@@ -38,11 +38,23 @@ const Dashboard = () => {
                 <ChartCard yourValue={state.dashboard.data.dollarsaved} theirValue={state.dashboard.data.avgdollarsaved} fill={yellow[600]} measurement="dollars"title="Money Saved ($AUD)"/>
                 : <Grid item xs={4} ><Card><div class="circle-center"><CircularProgress /></div></Card></Grid>
             }
-        </Grid>
+            { state.dashboard.length !== 0 ?
+            <Badges badges={state.dashboard.data.badges} />
+            : <Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper>
+            }
+            { state.dashboard.length !== 0 ?
+            <NextBadges badges={state.dashboard.data.next_badges} />
+            : <Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper>
+            }
+        
         { state.dashboard.length !== 0 ?
             <History history={state.dashboard.data.history} />
             : <Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper>
         }
+        
+
+        </Grid>
+
         
             
             

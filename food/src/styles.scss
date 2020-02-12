@@ -126,11 +126,6 @@ $primaryColor: #eef311;
     color: darkOrange !important;
 }
 
-.history-list {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .dashboard-paper {
     padding: 4px;
@@ -157,5 +152,34 @@ $primaryColor: #eef311;
     font-weight: 700;
     svg {
         color: white;
+    }
+}
+.badgeListItem {
+    display: block !important;
+    width: 250px !important;
+    height: 150px !important;
+;
+    h3 {
+        text-align: center;
+    }
+    .badge {
+        width:100%;
+        height: 80%;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        &.next {
+            opacity: 60%;
+        }
+        &.badge5kg {    
+            background-image: url('./images/badges/1-recycle.svg');    
+        }
+        &.badge10kg {    
+            background-image: url('./images/badges/2-recycle.svg');    
+        }
+        &.badge15kg {    
+            background-image: url('./images/badges/3-recycle.svg');    
+        }
+
     }
 }
