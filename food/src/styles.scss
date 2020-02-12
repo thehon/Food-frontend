@@ -158,9 +158,14 @@ $primaryColor: #eef311;
     display: block !important;
     width: 150px !important;
     height: 150px !important;
-;
+
     h3 {
         text-align: center;
+        margin:0;
+        text-transform: capitalize;
+        &:first-of-type {
+            margin-top: 0.5rem;
+        }
     }
     .badge {
         width:100%;
@@ -168,20 +173,46 @@ $primaryColor: #eef311;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+        transition: opacity 0.5s linear;
         &.next {
             opacity: 60%;
         }
-        &.badge5kg {    
+        &.recycle0 {
+            background-image: url('./images/badges/0-recycle.svg');    
+        }
+        &.recycle1 {    
             background-image: url('./images/badges/1-recycle.svg');    
         }
-        &.badge10kg {    
+        &.recycle2 {    
             background-image: url('./images/badges/2-recycle.svg');    
         }
-        &.badge15kg {    
+        &.recycle3 {    
             background-image: url('./images/badges/3-recycle.svg');    
         }
-        
 
-
+        &.co20 {
+            background-image: url('./images/badges/0-star.svg');    
+            width: 200px !important;
+        }
+        &.co21 {
+            background-image: url('./images/badges/1-star.svg');    
+            width: 200px !important;
+        }
+        &.co22 {
+            background-image: url('./images/badges/2-star.svg');    
+            width: 200px !important;
+        }
+        &.co23 {
+            background-image: url('./images/badges/3-star.svg');    
+            width: 200px !important;
+        }
+        &.co24 {
+            background-image: url('./images/badges/4-star.svg');    
+            width: 200px !important;
+        }
+        &.co25 {
+            background-image: url('./images/badges/5-star.svg');    
+            width: 200px !important;
+        }
     }
 }

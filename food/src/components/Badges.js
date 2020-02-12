@@ -1,19 +1,25 @@
 import React from 'react';
 import { List, ListItem, Grid, Paper } from '@material-ui/core';
 const Badges = ({badges}) => {
+    var badgearray = [];
+    var namearray  = [];
+    for (var key in badges) {
+        badgearray.push({name: key + badges[key], title: key, level: badges[key]});
+    }
     return (           
         <Grid item xs={12} >
             <Paper>
                 <h2 style={{marginLeft: "6px", marginTop: "6px"}}>Badges Earned</h2>
                 <List style={{display: 'flex', paddingBottom: "30px "}}>
-                { badges.map(function(item) {
+                { badgearray.map((function(item) {
                 return (
                     <ListItem className="badgeListItem">
-                        <div className={"badge badge" + item} />                   
-                        <h3>{item}</h3>
+                        <div className={"badge " + item.name} />                   
+                    <h3>{item.title} </h3>
+                    <h3>Level {item.level}</h3>
                     </ListItem>
                     );
-                })}
+                }))}
                 </List>
             </Paper>
         </Grid>
