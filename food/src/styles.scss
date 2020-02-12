@@ -59,6 +59,7 @@ $primaryColor: #eef311;
             background-position: center;
             background-size: contain;
             padding-top: 0;
+            margin-top: 1rem;
         }
     }
     .shrunk {
@@ -70,6 +71,7 @@ $primaryColor: #eef311;
     flex-wrap: wrap;
     .MuiCardHeader-action {
         order: 1;
+        width: 100%;
     }
     .MuiCardHeader-content {
         order: 2;
@@ -134,4 +136,26 @@ $primaryColor: #eef311;
     padding: 4px;
     text-align: center;
     margin-bottom: 1rem;
+}
+
+.clearIcon {
+    position: absolute;
+    right: 5%;
+    top: 2%;
+}
+
+.MuiGrid-root {
+    &.invisible {
+        display: none;
+        transition: display 0.5s linear;
+    }
+}
+
+.searchItemChip {
+    background-color: lightgreen !important;    
+    color: white !important;
+    font-weight: 700;
+    svg {
+        color: white;
+    }
 }

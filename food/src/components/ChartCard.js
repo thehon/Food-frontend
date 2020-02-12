@@ -17,10 +17,14 @@ const ChartCard = ({yourValue, theirValue, measurement, fill, title}) => {
                 <CardContent style={{padding:'10px', marginBottom: '12px'}}>
                 <Grid container spacing={2} >
                     <Grid item xs={6} style={{height: "10px"}}>
-                        <Paper className="dashboard-paper" style={{padding: "4px"}}><b>You</b> have saved <br></br><span><h3>{yourValue.toFixed(2)}</h3> {measurement}</span></Paper>
+                        <Paper className="dashboard-paper" style={{padding: "4px"}}>
+                            <b>You</b> <br></br><span><h3>{yourValue.toFixed(2)}</h3></span>
+                        </Paper>
                     </Grid>
                     <Grid item xs={6} style={{height: "10px"}}>
-                        <Paper className="dashboard-paper" style={{padding: "4px"}}><b>Community</b> saved <br></br><h3><b>{theirValue.toFixed(2)}</b></h3> {measurement}</Paper>
+                        <Paper className="dashboard-paper" style={{padding: "4px"}}>
+                            <b>Community</b><br></br><h3><b>{theirValue.toFixed(2)}</b> </h3>
+                            </Paper>
                     </Grid>
                 </Grid>
                 </CardContent>

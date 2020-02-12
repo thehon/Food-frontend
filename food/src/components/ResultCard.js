@@ -3,13 +3,14 @@ import { CardContent, CardActions, IconButton, ListItem, ExpansionPanel, Expansi
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DoneIcon from '@material-ui/icons/Done';
-import WarningIcon from '@material-ui/icons/Warning';
+
 import ClearIcon from '@material-ui/icons/Clear';
 import ShareIcon from '@material-ui/icons/Share';
 import { red, yellow, green } from '@material-ui/core/colors';
 import { ReactComponent as ServeIcon } from '../images/serve.svg';
-import SearchIcon from '@material-ui/icons/Search';
+
 import { Context } from '../context/FoodContext';
+import OpenWithIcon from '@material-ui/icons/OpenWith';
 const useStyles = makeStyles(theme => ({
     root: {
       //maxWidth: 345,
@@ -53,8 +54,9 @@ const useStyles = makeStyles(theme => ({
       height: "150px"
     },
     healthChip: {
-      backgroundColor: "forestGreen",
-      color: 'white'
+      border: "2px solid lightgreen",
+      color: 'lightgreen',
+      backgroundColor: 'white'
     },
     expansionPanelDetails: {
       paddingLeft: "2px",
@@ -72,23 +74,33 @@ const useStyles = makeStyles(theme => ({
 const ResultCard = ({result, setSnackOpen}) => {
     const [ expanded, setExpanded ] = useState(false);
     const [ grown, setGrown ] = useState('shrunk');
+    const [ visible, setVisible ] = useState('visible');
     const { Cooked } = useContext(Context);
     const handleExpandClick = () => {
         setExpanded(!expanded);
       };
     const classes = useStyles();
     const recipe = result.recipe;
-    
+
+    const handleRemove = () => {
+      if (visible === 'visible') {
+        setVisible('invisible');
+      } else {
+        setVisible('visible');
+      }
+    }
     return (
-      <Grid item xs={12} md={3} className={grown}>
-        <Card className={classes.root}>
+      <Grid item xs={12} md={3} className={grown + ' ' + visible}>
+        <Card className={classes.root} style={{position: 'relative'}}>
+          <ClearIcon  className="clearIcon" onClick={handleRemove}/>
           <div className="small-grid">
             <CardHeader
                 title={recipe.label}
                 subheader={recipe.totalTime !== 0 ? 'Time: ' + recipe.totalTime : 'Time: 32'}
                 className={classes.cardHeader}
                 action={
-              <List>
+              <List className="card-header-icons">
+                
               {recipe.match.map(function(caut) {
                 
                   if (caut !== '') {
@@ -103,8 +115,10 @@ const ResultCard = ({result, setSnackOpen}) => {
                     </ListItem>
                   )
                   }})}
+                
                 </List>
                 }
+
                 />
               
             <CardMedia
@@ -119,7 +133,7 @@ const ResultCard = ({result, setSnackOpen}) => {
                   return (
                     <ListItem className={classes.healthItem}>
                       <Chip 
-                        deleteIcon={<DoneIcon style={{color: yellow[50]}} />}
+                        deleteIcon={<DoneIcon style={{color: 'lightgreen'}} />}
                         label={diet}
                         key={diet}
                         onDelete
@@ -135,12 +149,6 @@ const ResultCard = ({result, setSnackOpen}) => {
             </CardContent>
             </div>
             <CardActions >
-            
-            <IconButton >
-                <Tooltip title="Remove">
-                  <ClearIcon  />
-                  </Tooltip>
-              </IconButton>
               <IconButton >
                 <Tooltip title="Share">
                   <ShareIcon/>
@@ -159,7 +167,7 @@ const ResultCard = ({result, setSnackOpen}) => {
               <IconButton >
                 <Tooltip title="Expand">
                   
-                  <SearchIcon style={{width:"30px"}} 
+                  <OpenWithIcon style={{width:"30px"}} 
                     onClick={() => {
                       if (grown === 'grown') {
                         setGrown('shrunk');

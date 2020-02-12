@@ -24,9 +24,17 @@ const useStyles = makeStyles(theme => ({
         marginTop: "5px"
     },
     selected: {
-        backgroundColor: 'lightgreen',
-        color: 'white'
+        //border:  '2px solid lightgreen',
+        color: 'white',
+        backgroundColor: 'lightgreen !important',        
+        fontWeight: '700'
     },
+    unselected: {
+        border:  '2px solid lightgreen',
+        color: 'lightgreen',
+        fontWeight: '700',
+        backgroundColor: 'white !important'
+    }
   }));
 
 const dietPrefsList = ['vegan', 'vegetarian', 'peanut-free', 'tree-nut-free', 'alcohol-free'];
@@ -70,7 +78,7 @@ const SearchBox = () => {
                     }
                 }}
             />
-            <List className={classes.prefContainer} style={{display: 'flex'}}>
+            <List className={classes.prefContainer} style={{display: 'flex', overflow: 'scroll'}}>
                 <ListItem className={classes.root}>
                     <h4 className="h4-centered">Dietary Preferences</h4>
                 </ListItem>
@@ -120,6 +128,7 @@ const SearchBox = () => {
                             <Chip 
                                 label={el} 
                                 key={el}
+                                className="searchItemChip"
                                 onDelete={(ele) => {  setSearchItems(searchItems.filter(function(item) {
                                     return item !== el;
                                 }))}}
