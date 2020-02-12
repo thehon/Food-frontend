@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { CardContent, CardActions, IconButton, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Tooltip, TableCell, TableBody, Table, Chip, List, CardMedia, CardHeader, Card, TableHead, TableRow, Grid } from '@material-ui/core';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -9,7 +9,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import { red, yellow, green } from '@material-ui/core/colors';
 import { ReactComponent as ServeIcon } from '../images/serve.svg';
 import SearchIcon from '@material-ui/icons/Search';
-
+import { Context } from '../context/FoodContext';
 const useStyles = makeStyles(theme => ({
     root: {
       //maxWidth: 345,
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
       color: 'white'
     },
     cardHeader: {
-      height: "100px"
+      height: "150px"
     },
     healthChip: {
       backgroundColor: "forestGreen",
@@ -59,6 +59,11 @@ const useStyles = makeStyles(theme => ({
     expansionPanelDetails: {
       paddingLeft: "2px",
       paddingRight: "2px"
+    },
+    matchItem: {
+      border: '2px solid mediumPurple',
+      color: 'mediumPurple',
+      backgroundColor: 'white'
     }
   
 
@@ -67,12 +72,13 @@ const useStyles = makeStyles(theme => ({
 const ResultCard = ({result, setSnackOpen}) => {
     const [ expanded, setExpanded ] = useState(false);
     const [ grown, setGrown ] = useState('shrunk');
+    const { Cooked } = useContext(Context);
     const handleExpandClick = () => {
         setExpanded(!expanded);
       };
     const classes = useStyles();
     const recipe = result.recipe;
-    console.log('resutl: ', result);
+    
     return (
       <Grid item xs={12} md={3} className={grown}>
         <Card className={classes.root}>
@@ -81,7 +87,26 @@ const ResultCard = ({result, setSnackOpen}) => {
                 title={recipe.label}
                 subheader={recipe.totalTime !== 0 ? 'Time: ' + recipe.totalTime : 'Time: 32'}
                 className={classes.cardHeader}
-            /> 
+                action={
+              <List>
+              {recipe.match.map(function(caut) {
+                
+                  if (caut !== '') {
+                  return (
+                    <ListItem className={classes.healthItem}>
+                      <Chip
+                        
+                        label={caut}
+                        key={caut}
+                        className={classes.matchItem}
+                      />
+                    </ListItem>
+                  )
+                  }})}
+                </List>
+                }
+                />
+              
             <CardMedia
               className={classes.media}
               image={recipe.image}
@@ -104,21 +129,7 @@ const ResultCard = ({result, setSnackOpen}) => {
                     </ListItem>
                   )
                 })}
-                {recipe.match.map(function(caut) {
-                  if (caut !== '') {
-                  return (
-                    <ListItem className={classes.healthItem}>
-                      <Chip
-                        deleteIcon={<WarningIcon style={{color: green[50]}} />}
-                        label={caut}
-                        key={caut}
-                        onDelete
-                        
-                        className={classes.dangerItem}
-                      />
-                    </ListItem>
-                  )
-                  }})}
+                
               </List>
               { result.description }
             </CardContent>
@@ -140,12 +151,14 @@ const ResultCard = ({result, setSnackOpen}) => {
                   <ServeIcon style={{width:"30px"}} 
                     onClick={() => {
                       setSnackOpen(true);
+                      Cooked(recipe);
                     }}
                   />
                   </Tooltip>
               </IconButton>
               <IconButton >
                 <Tooltip title="Expand">
+                  
                   <SearchIcon style={{width:"30px"}} 
                     onClick={() => {
                       if (grown === 'grown') {
@@ -177,6 +190,35 @@ const ResultCard = ({result, setSnackOpen}) => {
                             <TableRow key={ing.text}>
                               <TableCell>
                                 {ing.text}
+                              </TableCell>
+                            </TableRow>
+                          )
+                        })}
+                        </TableBody>
+                      </Table>
+                      </div>
+                      
+                    
+                    </ExpansionPanelDetails>      
+                  </ExpansionPanel>  
+
+                  <ExpansionPanel>
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                      Method 
+                      </ExpansionPanelSummary>
+                    <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+                    <div style={{ overflow: 'auto', maxHeight: '250px', width: "100%" }}>
+                      <Table stickyHeader >
+                        <TableBody>
+                        {recipe.method.map(function(ing) {
+                          return (
+                            <TableRow key={ing}>
+                              <TableCell>
+                                {ing}
                               </TableCell>
                             </TableRow>
                           )

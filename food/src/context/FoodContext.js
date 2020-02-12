@@ -11,6 +11,8 @@ const FoodReducer = (state, action) => {
             return { ...state, autoCompleteIngredients: action.payload }
         case 'search':
             return { ...state, recipeResults: action.payload}
+        case 'dashboard':
+            return { ...state, dashboard: action.payload}
 
     }
 }
@@ -18,7 +20,7 @@ const FoodReducer = (state, action) => {
 const Login = dispatch => async ({email, password}) => {
     try {
         const resp = await api.post('/api/token-auth',{email,password})
-        console.log("Login Response: ", resp);
+        
         dispatch({type: 'login'});
     } catch (e) {
         console.log('error in login: ', e);
@@ -36,7 +38,7 @@ const Logout = dispatch => {
 const Signup = dispatch => async ({email, password}) => {
     try {
         const resp = await api.get('/create_user?email=' + email + "&password=" + password);
-        console.log("Signup Response: ", resp);
+        
         dispatch({type: 'signup'});
     } catch (e) {
         console.log('erorr signing up',e);
@@ -57,11 +59,11 @@ const Search = dispatch => async (searchItems, dietPrefs) => {
     try { 
         if (searchItems !== '') {
             var searchItemsString = searchItems.toString();
-            console.log('searchString: ', searchItemsString);
+            
         }
         if (dietPrefs !== '') {
             var dietPrefsString = dietPrefs.toString();
-            console.log('diestprefsstring: ', dietPrefsString);
+            
         }
         const searchString = "q=" + searchItemsString + '&p=' + dietPrefsString;
         
@@ -73,23 +75,39 @@ const Search = dispatch => async (searchItems, dietPrefs) => {
     }
 }
 
-const cooked = dispatch => async (recipe) => {
+const Cooked = dispatch => async (recipe) => {
     try {
-        const resp = await api.get('/' + recipe);
-
+        
+        var idstring = recipe.uri;
+        var newString = idstring.split('recipe_');
+        idstring = newString[1];
+        var imgurl = recipe.image;
+        var name = recipe.label;
+        const weight = recipe.totalWeight;
+        const resp = await api.get('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3944e5f293fea2b1d0630a81f4de014afc2bdfcd' );        
     } catch (e) {
         console.log('cooked error: ', e);
     }
 }
 
+const Dashboard = dispatch => async () => {
+    try {
+         const resp = await api.get('/get_stats?auth=3944e5f293fea2b1d0630a81f4de014afc2bdfcd');
+         dispatch({type: 'dashboard', payload: resp});
+    } catch (e) {
+        console.log('erorr dashboard: ', e);
+    }
+}
+
 export const { Provider, Context } = createDataContext(
     FoodReducer,
-    { Login, Logout, Signup, IngredientsPopulate, Search },
+    { Login, Logout, Signup, IngredientsPopulate, Search, Dashboard, Cooked },
     {
         user: '',
         savedRecipes: [],
         preferences: [],
         autoCompleteIngredients: [],
-        recipeResults: []
+        recipeResults: [],
+        dashboard: []
     }
 );

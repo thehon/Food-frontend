@@ -12,14 +12,15 @@ $primaryColor: #eef311;
     align-items: center;
     width: 100%;
     height: 250px;
-    border: 1px solid black;
+    
     border-radius: 50%;
     svg {
-        padding: 0.5rem;
+        //padding: 0.5rem;
         width: 100%;
         max-height: 200px;
     }
     .recycle-number {
+        font-size: 2rem;
         position: absolute;
         right: 45%;
         bottom: 50%;
@@ -43,14 +44,17 @@ $primaryColor: #eef311;
 
         .small-grid {
             display: flex;
+            transition: display 0.3s linear;
             flex-direction: row;
             flex-wrap: wrap;
             .MuiCardHeader-root {
                 width: 45%;
+                transition: width 0.3s linear;
             }
         }
         .MuiCardMedia-root {
             height: 250px;
+            transition: height 0.5s linear;
             width:50%;
             background-position: center;
             background-size: contain;
@@ -59,5 +63,32 @@ $primaryColor: #eef311;
     }
     .shrunk {
         transition: width 0.3s linear, max-width 0.3s linear, flex-basis 0.3s linear;
+    }
+}
+
+.MuiCardHeader-root {
+    flex-wrap: wrap;
+    .MuiCardHeader-action {
+        order: 1;
+    }
+    .MuiCardHeader-content {
+        order: 2;
+    }
+}
+.MuiCardContent-root {
+    padding-bottom: 0 !important;
+}
+
+.makeStyles-healthList-366 {
+    padding-left: 1rem;
+}
+
+.circle-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .MuiCircularProgress-root {
+        width:80px !important;
+        height: 80px !important;
     }
 }

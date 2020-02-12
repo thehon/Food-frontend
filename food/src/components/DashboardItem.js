@@ -5,8 +5,9 @@ import ShareIcon from '@material-ui/icons/Share';
 const DashboardItem = (number, icon) => {
     return (
         <Grid item xs={2}>
+            
+            <Card style={{padding: '1rem'}}>
             <RecycleBadge number={number.number} />
-            <Card>
                 <CardHeader
                     title="Card Title"
                 />
