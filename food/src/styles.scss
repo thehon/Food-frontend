@@ -156,7 +156,7 @@ $primaryColor: #eef311;
 }
 .badgeListItem {
     display: block !important;
-    width: 250px !important;
+    width: 150px !important;
     height: 150px !important;
 ;
     h3 {
@@ -180,6 +180,8 @@ $primaryColor: #eef311;
         &.badge15kg {    
             background-image: url('./images/badges/3-recycle.svg');    
         }
+        
+
 
     }
 }

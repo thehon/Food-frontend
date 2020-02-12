@@ -1,7 +1,9 @@
 import React from 'react';
 import { List, ListItem, Grid, Paper } from '@material-ui/core';
 const NextBadges = ({badges}) => {
-    console.log('next badges: ', badges);
+    return (
+        <></>
+    )
     return (           
         <Grid item xs={12} >
             <Paper>
