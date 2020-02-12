@@ -84,7 +84,7 @@ const Cooked = dispatch => async (recipe) => {
         var imgurl = recipe.image;
         var name = recipe.label;
         const weight = recipe.totalWeight;
-        const resp = await api.get('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3944e5f293fea2b1d0630a81f4de014afc2bdfcd' );        
+        const resp = await api.get('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3acaa92243ea006be82085692fff8a8cd429a0e0' );        
     } catch (e) {
         console.log('cooked error: ', e);
     }
@@ -92,7 +92,7 @@ const Cooked = dispatch => async (recipe) => {
 
 const Dashboard = dispatch => async () => {
     try {
-         const resp = await api.get('/get_stats?auth=3944e5f293fea2b1d0630a81f4de014afc2bdfcd');
+         const resp = await api.get('/get_stats?auth=3acaa92243ea006be82085692fff8a8cd429a0e0');
          dispatch({type: 'dashboard', payload: resp});
     } catch (e) {
         console.log('erorr dashboard: ', e);

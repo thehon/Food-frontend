@@ -13,16 +13,16 @@ const Dashboard = () => {
     const { state, Dashboard } = useContext(Context);
     useEffect(() => {
         Dashboard();
-    },[state.dashboard]);
+    },[]);
     
     
 
-    
+    console.log('dashboard: ',state.dashboard);
     return (
         <>
         <Nav />
         <Container maxWidth="lg" style={{marginTop: '25vh', marginBottom: "5rem"}}>
-            <Grid item xs={12} md={4}>
+            <Grid container spacing={3}>
             
                     
             {state.dashboard.length !== 0 ? 
@@ -33,8 +33,13 @@ const Dashboard = () => {
                 <ChartCard yourValue={state.dashboard.data.co2saved} theirValue={state.dashboard.data.avg_co2saved} fill={teal[600]} measurement="kg's"/>
                 : <div class="circle-center"><CircularProgress /></div>
             }
+            {state.dashboard.length !== 0 ? 
+                <ChartCard yourValue={state.dashboard.data.dollarsaved} theirValue={state.dashboard.data.avg_dollarsaved} fill={teal[900]} measurement="dollars"/>
+                : <div class="circle-center"><CircularProgress /></div>
+            }
+        </Grid>
             
-            </Grid>
+            
             
         </Container>
         </>
