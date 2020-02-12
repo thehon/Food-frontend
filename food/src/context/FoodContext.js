@@ -33,7 +33,7 @@ const Logout = dispatch => {
     }
 }
 
-const Signup = dispatch => ({email, password}) => {
+const Signup = dispatch => async ({email, password}) => {
     try {
         const resp = await api.get('/create_user?email=' + email + "&password=" + password);
         console.log("Signup Response: ", resp);
@@ -81,7 +81,6 @@ const cooked = dispatch => async (recipe) => {
         console.log('cooked error: ', e);
     }
 }
-
 
 export const { Provider, Context } = createDataContext(
     FoodReducer,

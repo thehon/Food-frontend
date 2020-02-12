@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { CardContent, CardActions, IconButton, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Tooltip, TableCell, TableBody, Table, Chip, List, CardMedia, CardHeader, Card, TableHead, TableRow } from '@material-ui/core';
+import { CardContent, CardActions, IconButton, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Tooltip, TableCell, TableBody, Table, Chip, List, CardMedia, CardHeader, Card, TableHead, TableRow, Grid } from '@material-ui/core';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DoneIcon from '@material-ui/icons/Done';
 import WarningIcon from '@material-ui/icons/Warning';
 import ClearIcon from '@material-ui/icons/Clear';
 import ShareIcon from '@material-ui/icons/Share';
-import { red, yellow } from '@material-ui/core/colors';
+import { red, yellow, green } from '@material-ui/core/colors';
 import { ReactComponent as ServeIcon } from '../images/serve.svg';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -65,13 +66,17 @@ const useStyles = makeStyles(theme => ({
   }));
 const ResultCard = ({result, setSnackOpen}) => {
     const [ expanded, setExpanded ] = useState(false);
+    const [ grown, setGrown ] = useState('shrunk');
     const handleExpandClick = () => {
         setExpanded(!expanded);
       };
     const classes = useStyles();
     const recipe = result.recipe;
+    console.log('resutl: ', result);
     return (
+      <Grid item xs={12} md={3} className={grown}>
         <Card className={classes.root}>
+          <div className="small-grid">
             <CardHeader
                 title={recipe.label}
                 subheader={recipe.totalTime !== 0 ? 'Time: ' + recipe.totalTime : 'Time: 32'}
@@ -82,6 +87,7 @@ const ResultCard = ({result, setSnackOpen}) => {
               image={recipe.image}
               title={recipe.label}
             />
+          
             <CardContent>
               <List className={classes.healthList}>
                 {recipe.dietLabels.map(function(diet)  {
@@ -98,11 +104,12 @@ const ResultCard = ({result, setSnackOpen}) => {
                     </ListItem>
                   )
                 })}
-                {recipe.cautions.map(function(caut) {
+                {recipe.match.map(function(caut) {
+                  if (caut !== '') {
                   return (
                     <ListItem className={classes.healthItem}>
                       <Chip
-                        deleteIcon={<WarningIcon style={{color: yellow[50]}} />}
+                        deleteIcon={<WarningIcon style={{color: green[50]}} />}
                         label={caut}
                         key={caut}
                         onDelete
@@ -111,10 +118,11 @@ const ResultCard = ({result, setSnackOpen}) => {
                       />
                     </ListItem>
                   )
-                })}
+                  }})}
               </List>
               { result.description }
             </CardContent>
+            </div>
             <CardActions >
             
             <IconButton >
@@ -132,6 +140,19 @@ const ResultCard = ({result, setSnackOpen}) => {
                   <ServeIcon style={{width:"30px"}} 
                     onClick={() => {
                       setSnackOpen(true);
+                    }}
+                  />
+                  </Tooltip>
+              </IconButton>
+              <IconButton >
+                <Tooltip title="Expand">
+                  <SearchIcon style={{width:"30px"}} 
+                    onClick={() => {
+                      if (grown === 'grown') {
+                        setGrown('shrunk');
+                      } else {
+                        setGrown('grown');
+                      }
                     }}
                   />
                   </Tooltip>
@@ -216,6 +237,7 @@ const ResultCard = ({result, setSnackOpen}) => {
               </CardContent>
             
         </Card>
+      </Grid>
     );
 }
 

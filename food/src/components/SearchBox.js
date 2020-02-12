@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-  const dietPrefsList = ['vegan', 'lactose free', 'vegetarian', 'nut free', 'dairy free', 'fish free', 'egg free'];
+const dietPrefsList = ['vegan', 'vegetarian', 'peanut-free', 'tree-nut-free', 'alcohol-free'];
 
 const SearchBox = () => {
     const [ dietPrefs ,setDietPrefs ] = useState([]);

@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { Component, useContext, useState } from 'react';
 import { Context } from '../context/FoodContext';
 import ResultCard from './ResultCard';
 import Grid from '@material-ui/core/Grid';
@@ -12,9 +12,7 @@ const Results = ({ setSnackOpen }) => {
         <Grid container spacing={2}>
             {state.recipeResults.map(function(item) {
                  return (
-                 <Grid item xs={12} md={3}>
                     <ResultCard result={item} setSnackOpen={setSnackOpen}/>
-                 </Grid>
                  );
             }
         )}

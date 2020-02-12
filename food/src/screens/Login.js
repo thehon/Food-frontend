@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
-  const { login } = useContext(Context);
+  const { Login } = useContext(Context);
   const [ password , setPassword ] = useState('');
   const [ username, setUsername ] = useState('');
 
@@ -104,7 +104,7 @@ export default function Login() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={login(username, password)}
+            onClick={Login(username, password)}
           >
             Sign In
           </Button>

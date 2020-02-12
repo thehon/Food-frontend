@@ -32,3 +32,32 @@ $primaryColor: #eef311;
         text-decoration: none;
     }
 }
+
+.MuiGrid-root {
+    .grown {
+        
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-basis: 100% !important;
+        transition: width 0.3s linear, max-width 0.3s linear, flex-basis 0.3s linear;
+
+        .small-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            .MuiCardHeader-root {
+                width: 45%;
+            }
+        }
+        .MuiCardMedia-root {
+            height: 250px;
+            width:50%;
+            background-position: center;
+            background-size: contain;
+            padding-top: 0;
+        }
+    }
+    .shrunk {
+        transition: width 0.3s linear, max-width 0.3s linear, flex-basis 0.3s linear;
+    }
+}
