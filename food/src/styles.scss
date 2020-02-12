@@ -93,7 +93,7 @@ $primaryColor: #eef311;
     }
 }
 .chartcard {
-    height: 375px;
+    height: 400px;
 
     .MuiCardHeader-root {
         text-align: center;
@@ -108,4 +108,30 @@ $primaryColor: #eef311;
     .MuiCardContent-root {
         margin-top: -11rem;
     }
+}
+
+.h4-centered {
+    margin: 0;
+    align-self: center;
+    margin-right: 1rem;
+}
+
+.MuiChip-root {
+    margin-right: 0.2rem !important;
+}
+
+.snackbar-link {
+    color: darkOrange !important;
+}
+
+.history-list {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-paper {
+    padding: 4px;
+    text-align: center;
+    margin-bottom: 1rem;
 }

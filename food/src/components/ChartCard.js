@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardContent, Grid, CardHeader}  from '@material-ui/core/';
+import {Card, CardContent, Grid, CardHeader, Paper}  from '@material-ui/core/';
 import ChartComp from '../components/ChartComp';
 const ChartCard = ({yourValue, theirValue, measurement, fill, title}) => {
     yourValue = yourValue + 0.001;
@@ -15,8 +15,14 @@ const ChartCard = ({yourValue, theirValue, measurement, fill, title}) => {
                     <ChartComp style={{padding: '100px', marginRight: '10px'}} yourValue={yourValue} theirValue={theirValue} fill={fill}/>
                 </div>
                 <CardContent style={{padding:'10px', marginBottom: '12px'}}>
-                    You have saved <b>{yourValue.toFixed(2)} {measurement}</b> of food from being wasted!<br></br>
-                    Your local community has saved <b>{theirValue.toFixed(2)}{measurement}</b>
+                <Grid container spacing={2} >
+                    <Grid item xs={6} style={{height: "10px"}}>
+                        <Paper className="dashboard-paper" style={{padding: "4px"}}><b>You</b> have saved <br></br><span><h3>{yourValue.toFixed(2)}</h3> {measurement}</span></Paper>
+                    </Grid>
+                    <Grid item xs={6} style={{height: "10px"}}>
+                        <Paper className="dashboard-paper" style={{padding: "4px"}}><b>Community</b> saved <br></br><h3><b>{theirValue.toFixed(2)}</b></h3> {measurement}</Paper>
+                    </Grid>
+                </Grid>
                 </CardContent>
             </Card>
         </Grid>

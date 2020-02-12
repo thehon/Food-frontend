@@ -70,7 +70,10 @@ const SearchBox = () => {
                     }
                 }}
             />
-            <List className={classes.prefContainer}>
+            <List className={classes.prefContainer} style={{display: 'flex'}}>
+                <ListItem className={classes.root}>
+                    <h4 className="h4-centered">Dietary Preferences</h4>
+                </ListItem>
                 {dietPrefsList.map(function(item) {
                     if (dietPrefs.length !== 0 ) {
                         if (dietPrefs.includes(item)) {

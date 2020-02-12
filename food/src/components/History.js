@@ -1,19 +1,20 @@
 import React from 'react';
-import { List, ListItemAvatar, ListItem, Avatar, ListItemText, Divider } from '@material-ui/core';
+import { List, ListItemAvatar, ListItem, Avatar, ListItemText, Divider, Paper } from '@material-ui/core';
 
 const History = ({history}) => {
     console.log('hjistpry: ', history);
     if (history !== undefined) {
     return (
-        <>
-
+        <div class="history-list">
+        <div class="history-header">
+                <h1>Previously Cooked Recipes</h1>
+            </div>
+        <Paper>
         <List>
             {history.map(function(item){
                 return (
                     <>
-                    <div class="history-header">
-                        <h1>Previously Cooked Recipes</h1>
-                    </div>
+                    
                     <ListItem>
                         <ListItemAvatar>
                             <Avatar src={item.imageurl}/>
@@ -28,7 +29,9 @@ const History = ({history}) => {
                 );
             })}
         </List>
-        </>
+        </Paper>
+        </div>
+        
     )
     } else {
         return <></>;

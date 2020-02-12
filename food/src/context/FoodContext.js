@@ -77,7 +77,6 @@ const Search = dispatch => async (searchItems, dietPrefs) => {
 
 const Cooked = dispatch => async (recipe) => {
     try {
-        
         var idstring = recipe.uri;
         var newString = idstring.split('recipe_');
         idstring = newString[1];
@@ -86,6 +85,7 @@ const Cooked = dispatch => async (recipe) => {
         const weight = recipe.totalWeight;
         console.log('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3acaa92243ea006be82085692fff8a8cd429a0e0');
         const resp = await api.get('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3acaa92243ea006be82085692fff8a8cd429a0e0' );        
+        console.log('repsonse from cooked: ', resp);
     } catch (e) {
         console.log('cooked error: ', e);
     }
