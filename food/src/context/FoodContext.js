@@ -84,6 +84,7 @@ const Cooked = dispatch => async (recipe) => {
         var imgurl = recipe.image;
         var name = recipe.label;
         const weight = recipe.totalWeight;
+        console.log('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3acaa92243ea006be82085692fff8a8cd429a0e0');
         const resp = await api.get('/make_recipe?weight=' + weight + '&id=' + idstring + '&name=' + name + '&imageurl=' + imgurl + "&auth=" +'3acaa92243ea006be82085692fff8a8cd429a0e0' );        
     } catch (e) {
         console.log('cooked error: ', e);

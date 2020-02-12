@@ -93,5 +93,19 @@ $primaryColor: #eef311;
     }
 }
 .chartcard {
-    height: 500px;
+    height: 375px;
+
+    .MuiCardHeader-root {
+        text-align: center;
+    }
+
+    svg {
+        position: absolute;
+        right: 20%;
+        overflow: visible;
+        top: -5rem;
+    }
+    .MuiCardContent-root {
+        margin-top: -11rem;
+    }
 }

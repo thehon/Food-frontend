@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Badges = () => {
+const Badges = ({badges}) => {
+    
     return (
         <>
             Badge   
