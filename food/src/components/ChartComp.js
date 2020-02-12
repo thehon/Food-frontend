@@ -3,18 +3,18 @@ import {
     PieChart, Pie, Sector, Cell,
   } from 'recharts';
 
-const ChartComp = ({ yourValue, theirValue, fill}) => {    
+const ChartComp = ({ yourValue, theirValue, fill1, fill2}) => {    
     const data = [
-        { name: 'Community', value: yourValue },
-        { name: 'You', value: theirValue },
+        { name: 'Community', value: yourValue, fill1: fill1, fill2: fill2 },
+        { name: 'You', value: theirValue, fill1: fill1, fill2: fill2 },
         
       ];
-      console.log(data);
       const renderActiveShape = (props) => {
+        console.log('props: ', props);
         const RADIAN = Math.PI / 180;
         const {
           cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-          fill, payload, percent, value,
+          fill1,fill2, payload, percent, value,
         } = props;
         const sin = Math.sin(-RADIAN * midAngle);
         const cos = Math.cos(-RADIAN * midAngle);
@@ -28,7 +28,7 @@ const ChartComp = ({ yourValue, theirValue, fill}) => {
       
         return (
           <g style={{position: 'relative'}}>
-            <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
+            
             <Sector
               cx={cx}
               cy={cy}
@@ -36,35 +36,24 @@ const ChartComp = ({ yourValue, theirValue, fill}) => {
               outerRadius={outerRadius}
               startAngle={startAngle}
               endAngle={endAngle}
-              fill={fill}
+              fill={payload.payload.fill2}
               className="first"
+              
             />
             <Sector
               cx={cx}
               cy={cy}
               startAngle={startAngle}
               endAngle={endAngle}
-              innerRadius={outerRadius + 6}
-              outerRadius={outerRadius + 10}
-              fill={fill}
+              innerRadius={outerRadius + 3}
+              outerRadius={outerRadius + 20}
+              fill={payload.payload.fill2}
               className="second"
             />
-            <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-            <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-            <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`You ${value.toFixed(2
-              )}`}</text>
-            <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-              {`(   Added ${(percent * 100).toFixed(2)}%)`}
-            </text>
+          
           </g>
         );
       };
-
-      
-    
-      
-    
-      
         return (
           <PieChart width={400} height={400}>
             <Pie
@@ -75,9 +64,10 @@ const ChartComp = ({ yourValue, theirValue, fill}) => {
               cy={200}
               innerRadius={60}
               outerRadius={80}
-              fill={fill}
+              fill={fill1}
               dataKey="value"
-              //onMouseEnter={this.onPieEnter}
+              label={false}
+              startAngle={0}            
             />
           </PieChart>
         );

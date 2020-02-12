@@ -103,8 +103,12 @@ $primaryColor: #eef311;
 
     svg {
         position: absolute;
-        right: 20%;
-        overflow: visible;
+        width: 800px;
+        @media (min-width: 950px) {
+            width: 400px;
+            //right: 20%;
+            overflow: visible;
+        }
         top: -5rem;
     }
     .MuiCardContent-root {
@@ -167,6 +171,13 @@ $primaryColor: #eef311;
             margin-top: 0.5rem;
         }
     }
+    p {
+        margin: 0;
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 0.5rem;
+    }
     .badge {
         width:100%;
         height: 80%;
@@ -192,27 +203,40 @@ $primaryColor: #eef311;
 
         &.co20 {
             background-image: url('./images/badges/0-star.svg');    
-            width: 200px !important;
         }
         &.co21 {
-            background-image: url('./images/badges/1-star.svg');    
-            width: 200px !important;
+            background-image: url('./images/badges/1-star.svg');        
         }
         &.co22 {
             background-image: url('./images/badges/2-star.svg');    
-            width: 200px !important;
         }
         &.co23 {
             background-image: url('./images/badges/3-star.svg');    
-            width: 200px !important;
         }
         &.co24 {
             background-image: url('./images/badges/4-star.svg');    
-            width: 200px !important;
         }
         &.co25 {
             background-image: url('./images/badges/5-star.svg');    
-            width: 200px !important;
+            
+        }
+        &.dollar0 {
+            background-image: url('./images/badges/0-dollar.svg');    
+        }
+        &.dollar1 {
+            background-image: url('./images/badges/1-dollar.svg');    
+        }
+        &.dollar2 {
+            background-image: url('./images/badges/2-dollar.svg');    
+        }
+        &.dollar3 {
+            background-image: url('./images/badges/3-dollar.svg');    
+        }
+        &.dollar4 {
+            background-image: url('./images/badges/3-dollar.svg');    
+        }
+        &.dollar5 {
+            background-image: url('./images/badges/3-dollar.svg');    
         }
     }
 }
