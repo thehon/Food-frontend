@@ -26,20 +26,35 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-const Nav = () => {
+const Nav = (active) => {
     const classes = useStyles();
-  
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
         <Container maxWidth="lg">
           <Toolbar className={classes.tool}>
             <div className={classes.title}>
-            <Button color="inherit"><Link to ="/">Home</Link></Button>
-            <Button color="inherit"><Link to ="/Dashboard">Dashboard</Link></Button>
+            <Button color="inherit"><Link to ="/">
+              {active === 'Home' ? <b>Home</b> : "Home"}
+              </Link>
+              </Button>
+            <Button color="inherit">
+              <Link to ="/Dashboard">
+                 {active === 'Dashboard' ? <b>Dashboard</b> : "Dashboard"}
+              </Link>
+              </Button>
             </div>
-            <Button color="inherit"><Link to="/Signup">Signup</Link></Button>
-            <Button color="inherit"><Link to ="/Login">Login</Link></Button>
+            <Button color="inherit">
+              <Link to="/Signup">
+              {active === 'Signup' ? <b>Signup</b> : "Signup"}
+                </Link>
+              </Button>
+            <Button color="inherit">
+              <Link to ="/Login">
+              {active === 'Login' ? <b>Login</b> : "Login"}
+              </Link>
+              </Button>
             
           </Toolbar>
         </Container>

@@ -21,8 +21,8 @@ const Dashboard = () => {
     console.log('dashboard state: ',state);
     return (
         <>
-        <Nav />
-        <Container maxWidth="lg" style={{marginTop: '25vh', marginBottom: "5rem"}}>
+        <Nav active="Dashboard" />
+        <Container maxWidth="lg" style={{marginTop: '5vh', marginBottom: "5rem"}}>
             <Grid container spacing={3}>
             
                     
@@ -40,11 +40,11 @@ const Dashboard = () => {
             }
             { state.dashboard.length !== 0 ?
             <NextBadges badges={state.dashboard.data.next_badges} />
-            : <Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper>
+            : <Grid item xs={6} ><Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper></Grid>
             }
             { state.dashboard.length !== 0 ?
             <Badges badges={state.dashboard.data.badges} />
-            : <Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper>
+            : <Grid item xs={6} ><Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper></Grid>
             }
             
         

@@ -18,7 +18,8 @@ const ChartCard = ({yourValue, theirValue, measurement, fill1, fill2, title}) =>
                 <Grid container spacing={2} >
                     <Grid item xs={6} style={{height: "10px"}}>
                         <Paper className="dashboard-paper" style={{padding: "4px", backgroundColor: fill2, color: 'white'}}>
-                            <b>You</b> <br></br><span><h3>{yourValue.toFixed(2)}</h3></span>
+                            <p><b>You</b> </p>
+                            <h3>{yourValue.toFixed(2)}</h3>
                         </Paper>
                     </Grid>
                     <Grid item xs={6} style={{height: "10px"}}>

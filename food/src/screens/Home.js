@@ -18,8 +18,9 @@ const Home = () =>  {
       };
     return (
       <>
-        <Nav />
-        <Container maxWidth="lg" style={{marginTop: '25vh', marginBottom: "5rem"}}>
+        <Nav active="Home"/>
+        <div class="logo-container"></div>
+        <Container maxWidth="lg" style={{marginTop: '10vh', marginBottom: "5rem"}}>
             <SearchBox setSnackOpen={setSnackOpen}
                 style={{marginBottom: "2rem"}}
             />

@@ -56,25 +56,29 @@ const SearchBox = () => {
                 options={state.autoCompleteIngredients.data}
                 getOptionLabel={option => option}
                 value={currentItem}
-                
+                freeSolo
                 onChange={event => {
+                    console.log('onChange: ', event.target.value);
                     if (event.currentTarget.textContent != '') {
-                        setCurrentItem(event.currentTarget.textContent)
+                        setCurrentItem(event.target.value)
                         setSearchItems([...searchItems, currentItem]);
                         setSearchItems(_.uniq(searchItems));
+                        
                     }
                 }}
                 renderInput={params => (
                     <TextField 
-                        {...params} value={currentItem} label="Tell us whats in ya cupboard..." variant="outlined" fullWidth 
+                        {...params} value={currentItem} onChange={setCurrentItem(currentItem)} label="Tell us whats in ya cupboard..." variant="outlined" fullWidth 
                     /> 
                     )
                 }
                 onKeyPress={(key) => {
+                    console.log('pressed enter: ', currentItem);
                     if (key.key =="Enter" && currentItem != '') {
                         setCurrentItem(currentItem);
                         setSearchItems([...searchItems, currentItem]);
                         Search(searchItems, dietPrefs);
+                        setCurrentItem('');
                     }
                 }}
             />
@@ -89,7 +93,7 @@ const SearchBox = () => {
                         <ListItem className={classes.root}>    
                             <Chip 
                                 label={item}
-                                className={classes.selected}
+                                className="chipPurple selected"
                                 onClick={(me) => setDietPrefs(dietPrefs.filter(function(item) {
                                     return item !== me.target.textContent;
                                 }))}
@@ -98,10 +102,10 @@ const SearchBox = () => {
                     );
                 } else { 
                     return (
-                        <ListItem className={classes.root}>    
+                       <ListItem className={classes.root}>    
                             <Chip 
                                 label={item}
-                                className={classes.unselected}
+                                className="chipPurple unselected"
                                 onClick={(me) => {setDietPrefs([...dietPrefs, me.target.textContent])}}
                             />
                         </ListItem>
@@ -113,7 +117,7 @@ const SearchBox = () => {
                         <ListItem className={classes.root}>    
                             <Chip 
                                 label={item}
-                                className={classes.unselected}
+                                className="chipPurple unselected"
                                 onClick={(me) => {setDietPrefs([...dietPrefs, me.target.textContent])}}
                             />
                         </ListItem>
@@ -121,7 +125,7 @@ const SearchBox = () => {
                 }
                 })}
             </List>
-            <List>
+            <List style={{marginBottom: "6px"}}>
                 {searchItems.map( el => {
                     return (
                         <ListItem className={classes.root}>

@@ -8,7 +8,7 @@ const Badges = ({badges}) => {
     }
     return (           
         <Grid item xs={12} md={6} >
-            <Paper>
+            <Paper style={{paddingBottom: '10px'}}>
                 <h2 style={{marginLeft: "6px", marginTop: "6px", marginBottom: "6px"}}>Progress</h2>
                 <List style={{display: 'flex', paddingBottom: "30px "}}>
                 { badgearray.map((function(item) {

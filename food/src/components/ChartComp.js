@@ -45,8 +45,8 @@ const ChartComp = ({ yourValue, theirValue, fill1, fill2}) => {
               cy={cy}
               startAngle={startAngle}
               endAngle={endAngle}
-              innerRadius={outerRadius + 3}
-              outerRadius={outerRadius + 20}
+              innerRadius={outerRadius + -1}
+              outerRadius={outerRadius + 10}
               fill={payload.payload.fill2}
               className="second"
             />

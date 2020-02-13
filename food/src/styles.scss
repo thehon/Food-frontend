@@ -1,5 +1,6 @@
-$primaryColor: #eef311;
-
+$primaryColor: #043B56;
+$secondaryColor: #653a8e;
+$aaa: #6e1bbd;
 .MuiAppBar-colorPrimary {
     //background-color: $primaryColor !important;
     ///color: black !important;
@@ -29,18 +30,20 @@ $primaryColor: #eef311;
 
 .MuiButton-label {
     a {
-        color: white;
+        color: $primaryColor;
         text-decoration: none;
+        font-weight: 500;
     }
 }
 
 .MuiGrid-root {
     .grown {
-        
+        @media (min-width: 900px) {
+        order: 1;
         width: 100% !important;
         max-width: 100% !important;
         flex-basis: 100% !important;
-        transition: width 0.3s linear, max-width 0.3s linear, flex-basis 0.3s linear;
+        transition: max-width 0.3s linear, flex-basis 0.3s linear;
 
         .small-grid {
             display: flex;
@@ -48,22 +51,60 @@ $primaryColor: #eef311;
             flex-direction: row;
             flex-wrap: wrap;
             .MuiCardHeader-root {
+                order: 2;
                 width: 45%;
                 transition: width 0.3s linear;
+                //margin-top: -8rem;
+                color: black;
+                font-weight: bold;
+                
+                .MuiCardHeader-content {
+                    //background-color: lightgray;
+                    //padding-left: 2rem;
+                    span {
+                        &:first-of-type {
+                            font-size: 2rem;
+                            font-weight: bold;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+
+            .Mui-expanded {
+                .MuiExpansionPanelSummary-content {
+                    font-weight: bold;
+                }
+                .MuiIconButton-label {
+                    display: none;
+                }
             }
         }
         .MuiCardMedia-root {
-            height: 250px;
+            height: 350px;
+            width: 100%;
+            order: 1;
+
             transition: height 0.5s linear;
-            width:50%;
+            
             background-position: center;
-            background-size: contain;
+            background-size: cover;
             padding-top: 0;
             margin-top: 1rem;
+        }
         }
     }
     .shrunk {
         transition: width 0.3s linear, max-width 0.3s linear, flex-basis 0.3s linear;
+        order: 2;
+        .MuiCardHeader-root {
+            height: 80px;
+        }
+        @media (max-width: 900px) {
+            .MuiCardContent-root {
+                display: none;
+            }
+        }
     }
 }
 
@@ -102,13 +143,7 @@ $primaryColor: #eef311;
     }
 
     svg {
-        position: absolute;
-        width: 800px;
-        @media (min-width: 950px) {
-            width: 400px;
-            //right: 20%;
-            overflow: visible;
-        }
+        position: absolute;        
         top: -5rem;
     }
     .MuiCardContent-root {
@@ -135,6 +170,14 @@ $primaryColor: #eef311;
     padding: 4px;
     text-align: center;
     margin-bottom: 1rem;
+    p {
+        padding: 0;
+        margin: 0;
+    }
+    h3 {
+        font-size: 2.5rem;
+        margin: 0;
+    }
 }
 
 .clearIcon {
@@ -151,7 +194,7 @@ $primaryColor: #eef311;
 }
 
 .searchItemChip {
-    background-color: lightgreen !important;    
+    background-color: $aaa !important;    
     color: white !important;
     font-weight: 700;
     svg {
@@ -161,7 +204,7 @@ $primaryColor: #eef311;
 .badgeListItem {
     display: block !important;
     width: 150px !important;
-    height: 150px !important;
+    height: 160px !important;
 
     h3 {
         text-align: center;
@@ -172,7 +215,9 @@ $primaryColor: #eef311;
         }
     }
     p {
+        
         margin: 0;
+        margin-top: 0.5rem;
         text-align: center;
     }
     h2 {
@@ -240,3 +285,50 @@ $primaryColor: #eef311;
         }
     }
 }
+
+.MuiAppBar-colorPrimary {
+    background-color: unset !important;
+    box-shadow: none !important;
+    color: $primaryColor !important;
+}
+
+.chipPurple {
+    &.selected {
+        background-color: $primaryColor !important;
+        color: white !important;
+
+        
+    }
+    &.unselected {
+        border: 1px solid $primaryColor !important;
+        background-color: white !important;
+        color: $primaryColor !important;
+        
+    }
+}
+
+.logo-container {
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('./images/logo.png');
+    height: 175px;
+    width: 175px;
+    @media (min-width: 950px) {
+        height: 250px; 
+        width: 250px;    
+    }
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.MuiContainer-root.MuiContainer-maxWidthLg {
+    max-width: 1100px;
+}
+
+.healtChip {
+    svg {
+        color: $primaryColor;
+    }
+}
+

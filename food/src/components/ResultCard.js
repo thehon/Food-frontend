@@ -3,14 +3,10 @@ import { CardContent, CardActions, IconButton, ListItem, ExpansionPanel, Expansi
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DoneIcon from '@material-ui/icons/Done';
-
-import ClearIcon from '@material-ui/icons/Clear';
 import ShareIcon from '@material-ui/icons/Share';
 import { red, yellow, green } from '@material-ui/core/colors';
-import { ReactComponent as ServeIcon } from '../images/serve.svg';
-
 import { Context } from '../context/FoodContext';
-import OpenWithIcon from '@material-ui/icons/OpenWith';
+
 const useStyles = makeStyles(theme => ({
     root: {
       //maxWidth: 345,
@@ -51,7 +47,7 @@ const useStyles = makeStyles(theme => ({
       color: 'white'
     },
     cardHeader: {
-      height: "150px"
+      cursor: 'pointer'
     },
     healthChip: {
       border: "2px solid lightgreen",
@@ -67,9 +63,6 @@ const useStyles = makeStyles(theme => ({
       color: 'mediumPurple',
       backgroundColor: 'white'
     }
-  
-
-
   }));
 const ResultCard = ({result, setSnackOpen}) => {
     const [ expanded, setExpanded ] = useState(false);
@@ -89,61 +82,53 @@ const ResultCard = ({result, setSnackOpen}) => {
         setVisible('visible');
       }
     }
+
+    const handleExpand = () => {
+      if (grown === 'grown') {
+        setGrown('shrunk');
+      } else {
+        setGrown('grown');
+      }
+    }
+
     return (
-      <Grid item xs={12} md={3} className={grown + ' ' + visible}>
+      <Grid item xs={12} md={4} className={grown + ' ' + visible}>
         <Card className={classes.root} style={{position: 'relative'}}>
-          <ClearIcon  className="clearIcon" onClick={handleRemove}/>
           <div className="small-grid">
             <CardHeader
                 title={recipe.label}
                 subheader={recipe.totalTime !== 0 ? 'Time: ' + recipe.totalTime : 'Time: 32'}
                 className={classes.cardHeader}
-                action={
-              <List className="card-header-icons">
+                onClick={handleExpand}
+                />
+            <CardMedia
+              className={classes.media + ' recipeimage'}
+              image={recipe.image}
+              title={recipe.label}
+              onClick={handleExpand}
+            />
+            <CardContent>
+              <List className={classes.healthList}>
+              
+                    <List className="card-header-icons">
                 
-              {recipe.match.map(function(caut) {
+                  {recipe.match.map(function(caut) {
                 
                   if (caut !== '') {
                   return (
-                    <ListItem className={classes.healthItem}>
+                    <ListItem className={classes.healthItem + " healthChip"}>
                       <Chip
-                        
+                        onDelete
+                        deleteIcon={<DoneIcon />}
                         label={caut}
                         key={caut}
                         className={classes.matchItem}
                       />
                     </ListItem>
-                  )
-                  }})}
+                    )
+                    }})}
                 
-                </List>
-                }
-
-                />
-              
-            <CardMedia
-              className={classes.media}
-              image={recipe.image}
-              title={recipe.label}
-            />
-          
-            <CardContent>
-              <List className={classes.healthList}>
-                {recipe.dietLabels.map(function(diet)  {
-                  return (
-                    <ListItem className={classes.healthItem}>
-                      <Chip 
-                        deleteIcon={<DoneIcon style={{color: 'lightgreen'}} />}
-                        label={diet}
-                        key={diet}
-                        onDelete
-                        className={classes.healthChip}
-                      
-                      />
-                    </ListItem>
-                  )
-                })}
-                
+                    </List>
               </List>
               { result.description }
             </CardContent>
@@ -156,7 +141,7 @@ const ResultCard = ({result, setSnackOpen}) => {
               </IconButton>
               <IconButton >
                 <Tooltip title="Mark as cooked">
-                  <ServeIcon style={{width:"30px"}} 
+                  <DoneIcon style={{width:"30px"}} 
                     onClick={() => {
                       setSnackOpen(true);
                       Cooked(recipe);
@@ -164,24 +149,15 @@ const ResultCard = ({result, setSnackOpen}) => {
                   />
                   </Tooltip>
               </IconButton>
-              <IconButton >
-                <Tooltip title="Expand">
-                  
-                  <OpenWithIcon style={{width:"30px"}} 
-                    onClick={() => {
-                      if (grown === 'grown') {
-                        setGrown('shrunk');
-                      } else {
-                        setGrown('grown');
-                      }
-                    }}
-                  />
-                  </Tooltip>
-              </IconButton>
-              
+              <h4 class="view-more" onClick={handleExpand}>
+              {grown === 'grown' ? "Hide" : "View More"}
+              </h4>
             </CardActions>
               <CardContent style={{paddingLeft: 0, paddingRight: 0}}>
-                <ExpansionPanel>
+                <ExpansionPanel
+                  defaultExpanded={grown==='grown' ? true : false}
+                  expanded={grown==='grown' ? true : false}
+                >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -205,12 +181,13 @@ const ResultCard = ({result, setSnackOpen}) => {
                         </TableBody>
                       </Table>
                       </div>
-                      
-                    
                     </ExpansionPanelDetails>      
-                  </ExpansionPanel>  
+                  </ExpansionPanel >  
 
-                  <ExpansionPanel>
+                  <ExpansionPanel
+                    defaultExpanded={grown==='grown' ? true : false}
+                    expanded={grown==='grown' ? true : false}
+                  >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -239,7 +216,10 @@ const ResultCard = ({result, setSnackOpen}) => {
                     </ExpansionPanelDetails>      
                   </ExpansionPanel>  
 
-                  <ExpansionPanel>
+                  <ExpansionPanel
+                  defaultExpanded={grown==='grown' ? true : false}
+                  expanded={grown==='grown' ? true : false}
+                  >
                       <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -285,7 +265,6 @@ const ResultCard = ({result, setSnackOpen}) => {
                         </ExpansionPanelDetails>
                   </ExpansionPanel>        
               </CardContent>
-            
         </Card>
       </Grid>
     );
