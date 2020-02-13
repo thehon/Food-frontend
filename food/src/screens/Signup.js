@@ -52,8 +52,8 @@ export default function Signup() {
 
   return (
     <>
-    <div class="logo-container"></div>
     <Navbar />
+    <div class="logo-container"></div>
       <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
