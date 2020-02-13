@@ -52,6 +52,7 @@ export default function Signup() {
 
   return (
     <>
+    <div class="logo-container"></div>
     <Navbar />
       <Container component="main" maxWidth="xs">
       <CssBaseline />

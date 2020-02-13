@@ -82,7 +82,6 @@ const ResultCard = ({result, setSnackOpen}) => {
         setVisible('visible');
       }
     }
-
     const handleExpand = () => {
       if (grown === 'grown') {
         setGrown('shrunk');
@@ -90,14 +89,13 @@ const ResultCard = ({result, setSnackOpen}) => {
         setGrown('grown');
       }
     }
-
     return (
       <Grid item xs={12} md={4} className={grown + ' ' + visible}>
         <Card className={classes.root} style={{position: 'relative'}}>
           <div className="small-grid">
             <CardHeader
                 title={recipe.label}
-                subheader={recipe.totalTime !== 0 ? 'Time: ' + recipe.totalTime : 'Time: 32'}
+                subheader={recipe.totalTime !== 0 ? 'Time (minutes): ' + recipe.totalTime : 'Time (minutes): 32'}
                 className={classes.cardHeader}
                 onClick={handleExpand}
                 />
@@ -107,13 +105,10 @@ const ResultCard = ({result, setSnackOpen}) => {
               title={recipe.label}
               onClick={handleExpand}
             />
-            <CardContent>
-              <List className={classes.healthList}>
-              
+            <CardContent style={{order: 3}}>
+              <List className={classes.healthList }>
                     <List className="card-header-icons">
-                
                   {recipe.match.map(function(caut) {
-                
                   if (caut !== '') {
                   return (
                     <ListItem className={classes.healthItem + " healthChip"}>
@@ -127,13 +122,12 @@ const ResultCard = ({result, setSnackOpen}) => {
                     </ListItem>
                     )
                     }})}
-                
                     </List>
               </List>
               { result.description }
             </CardContent>
             </div>
-            <CardActions >
+            <CardActions  style={{justifyContent: 'space-between'}}>
               <IconButton >
                 <Tooltip title="Share">
                   <ShareIcon/>
@@ -156,12 +150,13 @@ const ResultCard = ({result, setSnackOpen}) => {
               <CardContent style={{paddingLeft: 0, paddingRight: 0}}>
                 <ExpansionPanel
                   defaultExpanded={grown==='grown' ? true : false}
-                  expanded={grown==='grown' ? true : false}
+                  //expanded={grown==='grown' ? false : true}
                 >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    className="bold-me"
                   >
                       Ingredients 
                       </ExpansionPanelSummary>
@@ -186,12 +181,13 @@ const ResultCard = ({result, setSnackOpen}) => {
 
                   <ExpansionPanel
                     defaultExpanded={grown==='grown' ? true : false}
-                    expanded={grown==='grown' ? true : false}
+                    
                   >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    className="bold-me"
                   >
                       Method 
                       </ExpansionPanelSummary>
@@ -218,12 +214,13 @@ const ResultCard = ({result, setSnackOpen}) => {
 
                   <ExpansionPanel
                   defaultExpanded={grown==='grown' ? true : false}
-                  expanded={grown==='grown' ? true : false}
+                  
                   >
                       <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
+                        className="bold-me"
                         >
                           Dietary Information
                         </ExpansionPanelSummary>

@@ -57,6 +57,7 @@ export default function Login() {
 
   return (
     <>
+    <div class="logo-container"></div>
     <Navbar />
       <Container component="main" maxWidth="xs">
       <CssBaseline />

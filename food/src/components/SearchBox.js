@@ -58,12 +58,12 @@ const SearchBox = () => {
                 value={currentItem}
                 freeSolo
                 onChange={event => {
-                    console.log('onChange: ', event.target.value);
+                    
                     if (event.currentTarget.textContent != '') {
                         setCurrentItem(event.target.value)
                         setSearchItems([...searchItems, currentItem]);
                         setSearchItems(_.uniq(searchItems));
-                        
+                        Search(searchItems, dietPrefs);
                     }
                 }}
                 renderInput={params => (
@@ -73,11 +73,11 @@ const SearchBox = () => {
                     )
                 }
                 onKeyPress={(key) => {
-                    console.log('pressed enter: ', currentItem);
+                    
                     if (key.key =="Enter" && currentItem != '') {
                         setCurrentItem(currentItem);
-                        setSearchItems([...searchItems, currentItem]);
-                        Search(searchItems, dietPrefs);
+                        setSearchItems([...searchItems, currentItem]);    
+                        Search([...searchItems, currentItem], dietPrefs);
                         setCurrentItem('');
                     }
                 }}

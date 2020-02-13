@@ -7,7 +7,7 @@ const Results = ({ setSnackOpen }) => {
     const { state } = useContext(Context);
     
     if (state.recipeResults.length !== 0) {
-        console.log('recipe results: ', state.recipeResults);
+        
         return (
         <Grid container spacing={2}>
             {state.recipeResults.map(function(item) {

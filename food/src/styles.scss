@@ -37,14 +37,16 @@ $aaa: #6e1bbd;
 }
 
 .MuiGrid-root {
-    .grown {
+    .grown {    
         @media (min-width: 900px) {
         order: 1;
         width: 100% !important;
         max-width: 100% !important;
         flex-basis: 100% !important;
         transition: max-width 0.3s linear, flex-basis 0.3s linear;
-
+        .MuiCardActions-spacing {
+            justify-content: space-around;   
+        }
         .small-grid {
             display: flex;
             transition: display 0.3s linear;
@@ -70,14 +72,12 @@ $aaa: #6e1bbd;
                     }
                 }
             }
-
-            .Mui-expanded {
-                .MuiExpansionPanelSummary-content {
-                    font-weight: bold;
-                }
-                .MuiIconButton-label {
-                    display: none;
-                }
+            
+            .MuiExpansionPanelSummary-content {
+                font-weight: bold;
+            }
+            .MuiExpansionPanelSummary-content.Mui-expanded {
+                font-weight: bold !important;
             }
         }
         .MuiCardMedia-root {
@@ -143,7 +143,8 @@ $aaa: #6e1bbd;
     }
 
     svg {
-        position: absolute;        
+        position: absolute; 
+        left: -10%;       
         top: -5rem;
     }
     .MuiCardContent-root {
@@ -331,4 +332,17 @@ $aaa: #6e1bbd;
         color: $primaryColor;
     }
 }
+.grown {
+    .bold-me {
+        font-weight: bold;
+    }
 
+    
+}
+.recipeimage {
+    @media(max-width: 900px) {
+        height: 30vh !important;
+        padding-top:50px !important;
+    }
+    
+}
