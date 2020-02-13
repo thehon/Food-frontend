@@ -63,7 +63,6 @@ const SearchBox = () => {
                         setCurrentItem(event.target.value)
                         setSearchItems([...searchItems, currentItem]);
                         setSearchItems(_.uniq(searchItems));
-                        Search(searchItems, dietPrefs);
                     }
                 }}
                 renderInput={params => (
@@ -73,7 +72,6 @@ const SearchBox = () => {
                     )
                 }
                 onKeyPress={(key) => {
-                    
                     if (key.key =="Enter" && currentItem != '') {
                         setCurrentItem(currentItem);
                         setSearchItems([...searchItems, currentItem]);    

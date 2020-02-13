@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 const Results = ({ setSnackOpen }) => {
     const { state } = useContext(Context);
     
-    if (state.recipeResults.length !== 0) {
+    if (state.recipeResults !== undefined) {
         
         return (
         <Grid container spacing={2}>

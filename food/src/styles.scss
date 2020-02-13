@@ -39,7 +39,7 @@ $aaa: #6e1bbd;
 .MuiGrid-root {
     .grown {    
         @media (min-width: 900px) {
-        order: 1;
+        //order: 1;
         width: 100% !important;
         max-width: 100% !important;
         flex-basis: 100% !important;
@@ -96,9 +96,12 @@ $aaa: #6e1bbd;
     }
     .shrunk {
         transition: width 0.3s linear, max-width 0.3s linear, flex-basis 0.3s linear;
-        order: 2;
+        //order: 2;
         .MuiCardHeader-root {
             height: 80px;
+        }
+        .hide-for-shrunk {
+            display: none;
         }
         @media (max-width: 900px) {
             .MuiCardContent-root {

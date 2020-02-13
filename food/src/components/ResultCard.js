@@ -149,6 +149,7 @@ const ResultCard = ({result, setSnackOpen}) => {
             </CardActions>
               <CardContent style={{paddingLeft: 0, paddingRight: 0}}>
                 <ExpansionPanel
+                
                   defaultExpanded={grown==='grown' ? true : false}
                   //expanded={grown==='grown' ? false : true}
                 >
@@ -181,7 +182,7 @@ const ResultCard = ({result, setSnackOpen}) => {
 
                   <ExpansionPanel
                     defaultExpanded={grown==='grown' ? true : false}
-                    
+                    className="hide-for-shrunk"
                   >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -214,7 +215,7 @@ const ResultCard = ({result, setSnackOpen}) => {
 
                   <ExpansionPanel
                   defaultExpanded={grown==='grown' ? true : false}
-                  
+                  className="hide-for-shrunk"
                   >
                       <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
