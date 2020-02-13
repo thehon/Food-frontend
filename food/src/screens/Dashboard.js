@@ -39,11 +39,7 @@ const Dashboard = () => {
                 : <Grid item xs={4} ><Card><div class="circle-center"><CircularProgress /></div></Card></Grid>
             }
             { state.dashboard.length !== 0 ?
-            <NextBadges badges={state.dashboard.data.next_badges} />
-            : <Grid item xs={6} ><Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper></Grid>
-            }
-            { state.dashboard.length !== 0 ?
-            <Badges badges={state.dashboard.data.badges} />
+            <Badges badges={state.dashboard.data.badges} nextBadges={state.dashboard.data.next_badges} />
             : <Grid item xs={6} ><Paper><div class="circle-center" style={{marginTop: '40px'}}><CircularProgress /></div></Paper></Grid>
             }
             
