@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Ingredients = (ingredient, subs) => {
+
 { grown ==='shrunk' ? (
     <ExpansionPanel
                 
@@ -83,5 +83,5 @@ Ingredients
 </div>
 </ExpansionPanelDetails>      
 </ExpansionPanel >)   }
-}
+
 export default Ingredients

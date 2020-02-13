@@ -59,8 +59,8 @@ const useStyles = makeStyles(theme => ({
       paddingRight: "2px"
     },
     matchItem: {
-      border: '2px solid mediumPurple',
-      color: 'mediumPurple',
+      //border: '2px solid mediumPurple',
+      //color: 'mediumPurple',
       backgroundColor: 'white'
     }
   }));
@@ -211,10 +211,12 @@ Ingredients
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                     className="bold-me"
-                >Replacements</ExpansionPanelSummary>
+                >Substitute this ingredient with any of the following:</ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Table>
+                  <Table className="stack-for-mobile">
                     {state.subs[ing.text].map((item) => {
+                      item = item.split('=');
+                      item = item[1];
                       return (
                         <TableCell>
                           {item}
