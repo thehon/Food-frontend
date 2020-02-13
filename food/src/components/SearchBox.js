@@ -48,12 +48,12 @@ const SearchBox = () => {
     useEffect(() => {
         IngredientsPopulate();
     },[]);
-    
+    console.log('pre state: ,', state);
     return ( 
         <Container maxWidth="lg" style={{paddingLeft: 0, paddingRight: 0}}>
             <Autocomplete label="Enter your ingredients" fullWidth 
                 autoSelect={true}
-                options={state.autoCompleteIngredients.data}
+                options={state.autoCompleteIngredients !== undefined ? state.autoCompleteIngredients.data : [] }
                 getOptionLabel={option => option}
                 value={currentItem}
                 freeSolo

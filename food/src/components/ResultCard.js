@@ -68,7 +68,7 @@ const ResultCard = ({result, setSnackOpen}) => {
     const [ expanded, setExpanded ] = useState(false);
     const [ grown, setGrown ] = useState('shrunk');
     const [ visible, setVisible ] = useState('visible');
-    const { Cooked } = useContext(Context);
+    const { state, Cooked, getSubs } = useContext(Context);
     const handleExpandClick = () => {
         setExpanded(!expanded);
       };
@@ -87,6 +87,7 @@ const ResultCard = ({result, setSnackOpen}) => {
         setGrown('shrunk');
       } else {
         setGrown('grown');
+        getSubs(state.searchIngredients, recipe.ingredients);
       }
     }
     return (
@@ -148,37 +149,96 @@ const ResultCard = ({result, setSnackOpen}) => {
               </h4>
             </CardActions>
               <CardContent style={{paddingLeft: 0, paddingRight: 0}}>
-                <ExpansionPanel
+              { grown ==='shrunk' ? (
+    <ExpansionPanel
                 
-                  defaultExpanded={grown==='grown' ? true : false}
-                  //expanded={grown==='grown' ? false : true}
-                >
-                  <ExpansionPanelSummary
+    defaultExpanded={grown==='grown' ? true : false}
+    //expanded={grown==='grown' ? false : true}
+    >
+<ExpansionPanelSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-controls="panel1a-content"
+    id="panel1a-header"
+    className="bold-me"
+>
+    Ingredients 
+    </ExpansionPanelSummary>
+    <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+    <div style={{ overflow: 'auto', maxHeight: '250px', width: "100%" }}>
+    <Table stickyHeader >
+        <TableBody>
+        {recipe.ingredients.map(function(ing) {
+        return (
+            <TableRow key={ing.text}>
+            <TableCell>
+                {ing.text}
+            </TableCell>
+            </TableRow>
+        )
+        })}
+        </TableBody>
+    </Table>
+    </div>
+    </ExpansionPanelDetails>      
+</ExpansionPanel >)
+:
+(<ExpansionPanel
+                
+defaultExpanded={grown==='grown' ? true : false}
+//expanded={grown==='grown' ? false : true}
+>
+<ExpansionPanelSummary
+expandIcon={<ExpandMoreIcon />}
+aria-controls="panel1a-content"
+id="panel1a-header"
+className="bold-me"
+>
+Ingredients 
+</ExpansionPanelSummary>
+<ExpansionPanelDetails className={classes.expansionPanelDetails}>
+<div style={{ overflow: 'auto', maxHeight: '250px', width: "100%" }}>
+<Table stickyHeader >
+    <TableBody>
+    {recipe.ingredients.map(function(ing) {
+    return (
+        <TableRow key={ing.text}>
+        <TableCell>
+            {ing.text}
+            {state.subs[ing.text] !== undefined ? (
+            <ExpansionPanel>
+            <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                     className="bold-me"
-                  >
-                      Ingredients 
-                      </ExpansionPanelSummary>
-                    <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-                    <div style={{ overflow: 'auto', maxHeight: '250px', width: "100%" }}>
-                      <Table stickyHeader >
-                        <TableBody>
-                        {recipe.ingredients.map(function(ing) {
-                          return (
-                            <TableRow key={ing.text}>
-                              <TableCell>
-                                {ing.text}
-                              </TableCell>
-                            </TableRow>
-                          )
-                        })}
-                        </TableBody>
-                      </Table>
-                      </div>
-                    </ExpansionPanelDetails>      
-                  </ExpansionPanel >  
+                >Replacements</ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Table>
+                    {state.subs[ing.text].map((item) => {
+                      return (
+                        <TableCell>
+                          {item}
+                        </TableCell>
+                      )
+                    })}
+                    </Table>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+            )
+        
+        : (
+            <></>
+        )}
+        </TableCell>
+        
+        </TableRow>
+    )
+    })}
+    </TableBody>
+</Table>
+</div>
+</ExpansionPanelDetails>      
+</ExpansionPanel >)   }  
 
                   <ExpansionPanel
                     defaultExpanded={grown==='grown' ? true : false}

@@ -10,9 +10,11 @@ const FoodReducer = (state, action) => {
         case 'ingredients_populate':
             return { ...state, autoCompleteIngredients: action.payload }
         case 'search':
-            return { ...state, recipeResults: action.payload}
+            return { ...state, recipeResults: action.payload, searchIngredients: action.searchIngredients}
         case 'dashboard':
             return { ...state, dashboard: action.payload}
+        case 'get_subs':
+            return { ...state, subs: action.payload}
 
     }
 }
@@ -57,7 +59,7 @@ const IngredientsPopulate = dispatch => async () => {
 
 const Search = dispatch => async (searchItems, dietPrefs) => {
     try { 
-        console.log('search Items; ', searchItems);
+        
         if (searchItems !== '') {
             var searchItemsString = searchItems.toString();
             
@@ -70,7 +72,7 @@ const Search = dispatch => async (searchItems, dietPrefs) => {
         
         const resp = await api.get('/get_results?' + searchString);
         
-        dispatch({type: "search", payload: resp.data.hits});
+        dispatch({type: "search", payload: resp.data.hits, searchIngredients: searchItems});
     } catch (e) {
         console.log('search errorL ', e);
     }
@@ -101,15 +103,34 @@ const Dashboard = dispatch => async () => {
     }
 }
 
+const getSubs = dispatch => async (inputString, ingredients) => {
+    try {
+        var ingredientsArray = [];
+        for (var key in ingredients) {
+            ingredientsArray.push(ingredients[key].text);
+        }
+        var ingredientsString = ingredientsArray.join('|');
+        
+        var instring = inputString.toString();
+        const resp = await api.get('/get_substitutes?inputs=' + instring + "&ingredients=" + ingredientsString);
+        console.log("get subs respL ", resp.data.data);
+        dispatch({type: 'get_subs', payload: resp.data.data})
+    } catch {
+
+    }
+}
+
 export const { Provider, Context } = createDataContext(
     FoodReducer,
-    { Login, Logout, Signup, IngredientsPopulate, Search, Dashboard, Cooked },
+    { Login, Logout, Signup, IngredientsPopulate, Search, Dashboard, Cooked, getSubs },
     {
         user: '',
         savedRecipes: [],
         preferences: [],
         autoCompleteIngredients: [],
         recipeResults: [],
-        dashboard: []
+        dashboard: [],
+        searchIngredients: [],
+        subs: []
     }
 );
