@@ -15,7 +15,7 @@ const Badges = ({badges, nextBadges}) => {
     console.log('nextBadgeArray: ', nextBadges);
     return (           
         <Grid item xs={12} md={6} >
-            <Paper style={{paddingBottom: '250px'}}>
+            <Paper style={{paddingBottom: '60px'}}>
                 <h2 style={{marginLeft: "6px", marginTop: "6px", marginBottom: "6px"}}>Badges Earned</h2>
                 <List style={{display: 'flex', paddingBottom: "30px "}}>
                 { badgearray.map((function(item) {
@@ -25,12 +25,7 @@ const Badges = ({badges, nextBadges}) => {
                     <ListItem className="badgeListItem">
                         <div className={"badge " + item.name} />                   
                     <h3>{item.title} </h3>
-                    <h3>Level {item.level}</h3>
-                    <Divider />
-                    <div className="opacity">
-                        <div className={"badge " + item2.title + item2.level.next} />                   
-                    </div>
-                    <h3>{item2.title} </h3>
+                    <h3>Level {item.level}</h3>                                
                     
                     <LinearProgress style={{marginTop: "10px"}} variant="determinate" value={item2.level.value}/>
                     <p>{item2.level.value.toFixed(2)}%</p>

@@ -365,7 +365,7 @@ $aaa: #6e1bbd;
     
 }
 
-.makeStyles-matchItem-373 {
+.makeStyles-matchItem-373, .healthChip.MuiChip-root {
     color: $secondaryColor !important;
     border: 2px solid $secondaryColor !important;
     background-color: white;
@@ -389,12 +389,34 @@ $aaa: #6e1bbd;
         text-align: center;
         text-transform: uppercase;
         margin-bottom: 0.5rem;
+        color: $primaryColor;
     }
     h3 {
+        color: $primaryColor;
         width: 100%;
         white-space: nowrap;   
         text-align: center;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+    }
+}
+
+.spinner { 
+    width: 100px !important;
+    height: 100px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+.healthChip {
+    .MuiChip-deletable {
+        color: $secondaryColor !important;
+        border: 2px solid $secondaryColor !important;
+        background-color: white;
+
+        svg {
+            color: $secondaryColor !important;
+        }
     }
 }
